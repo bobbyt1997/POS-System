@@ -32,13 +32,13 @@ public class POS extends JFrame{
 	Statement stmt = null;
 	
 	//Create all necessary jpanels
-	JPanel jframe = new JPanel(new BorderLayout());
-    JPanel tabs = new JPanel(cl);
-    JPanel buttons = new JPanel();
-    JPanel settingsTab = new JPanel();
-    JPanel curTransTab = new JPanel();
-    JPanel cloTransTab = new JPanel();
-    JPanel dailyTab = new JPanel();
+	JPanel jframe;
+    JPanel tabs;
+    JPanel buttons;
+    JPanel settingsTab;
+    JPanel curTransTab;
+    JPanel cloTransTab;
+    JPanel dailyTab;
 
 	public static void main(String[] args){
 		SwingUtilities.invokeLater(new Runnable() {
@@ -59,17 +59,32 @@ public class POS extends JFrame{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
 		CardLayout cl = new CardLayout();
+		
+		//initiate panels
+		jframe = new JPanel(new BorderLayout());
+	    tabs = new JPanel(cl);
+	    buttons = new JPanel();
+	    settingsTab = new JPanel();
+	    curTransTab = new JPanel();
+	    cloTransTab = new JPanel();
+	    dailyTab = new JPanel();
         
-        //Create buttons
+        //Create buttons to switch between cards in cardlayout
         JButton currentTransactionsBtn = new JButton("Current Transaction");
         JButton closedTransactionsBtn = new JButton("Closed Transactions");
         JButton dailyReportsBtn = new JButton("Daily Reports");
         JButton settingsBtn = new JButton("Settings");
         
+        //Create buttons for settings tab
+        JButton addServiceBtn = new JButton("Add Service");
+        
         settingsBtn.setPreferredSize(new Dimension(150, 80));
         currentTransactionsBtn.setPreferredSize(new Dimension(150, 80));
         closedTransactionsBtn.setPreferredSize(new Dimension(150, 80));
         dailyReportsBtn.setPreferredSize(new Dimension(150, 80));
+        
+        //populate settings tabs
+        settingsTab.add(addServiceBtn);
         
         //Add jpanels to the tabs jpanel, which is using cardLayout
         tabs.add(settingsTab, "Settings");
