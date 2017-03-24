@@ -42,6 +42,8 @@ public class POS extends JFrame{
     JButton currentTransactionsBtn;
     JButton closedTransactionsBtn;
     JButton dailyReportsBtn;
+    JButton fullSet, fillIn, manicure, pedicure, manPed, nailRepair, 
+    nailsPolishCh, toesPolishCh;
 
 	public static void main(String[] args){
 		SwingUtilities.invokeLater(new Runnable() {
@@ -75,6 +77,17 @@ public class POS extends JFrame{
         currentTransactionsBtn = new JButton("Current Transaction");
         closedTransactionsBtn = new JButton("Closed Transactions");
         dailyReportsBtn = new JButton("Daily Reports");
+        
+        //Create buttons for actual services
+        fullSet = new JButton("Full Set");
+        fillIn = new JButton("Fill-In");
+        manicure = new JButton("Manicure");
+        pedicure = new JButton("Pedicure");
+        manPed = new JButton("Mani/Pedi");
+        nailRepair = new JButton("Nail Repair");
+        nailsPolishCh = new JButton("Nails Polish Change");
+        toesPolishCh = new JButton("Toes Polish Change");
+        
         
         currentTransactionsBtn.setPreferredSize(new Dimension(150, 80));
         closedTransactionsBtn.setPreferredSize(new Dimension(150, 80));
