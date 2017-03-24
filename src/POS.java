@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
+import java.util.Map;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -17,9 +18,6 @@ import javax.swing.SwingUtilities;
 
 public class POS extends JFrame{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	//JDBC driver name and database URL
@@ -36,10 +34,14 @@ public class POS extends JFrame{
 	JPanel jframe;
     JPanel tabs;
     JPanel buttons;
-    JPanel settingsTab;
     JPanel curTransTab;
     JPanel cloTransTab;
     JPanel dailyTab;
+    
+  //Create buttons to switch between cards in cardlayout
+    JButton currentTransactionsBtn;
+    JButton closedTransactionsBtn;
+    JButton dailyReportsBtn;
 
 	public static void main(String[] args){
 		SwingUtilities.invokeLater(new Runnable() {
@@ -65,39 +67,20 @@ public class POS extends JFrame{
 		jframe = new JPanel(new BorderLayout());
 	    tabs = new JPanel(cl);
 	    buttons = new JPanel();
-	    settingsTab = new JPanel();
-	    curTransTab = new JPanel();
+	    curTransTab = new JPanel(new BorderLayout());
 	    cloTransTab = new JPanel();
 	    dailyTab = new JPanel();
         
         //Create buttons to switch between cards in cardlayout
-        JButton currentTransactionsBtn = new JButton("Current Transaction");
-        JButton closedTransactionsBtn = new JButton("Closed Transactions");
-        JButton dailyReportsBtn = new JButton("Daily Reports");
-        JButton settingsBtn = new JButton("Settings");
+        currentTransactionsBtn = new JButton("Current Transaction");
+        closedTransactionsBtn = new JButton("Closed Transactions");
+        dailyReportsBtn = new JButton("Daily Reports");
         
-        //Create buttons for settings tab
-        JButton addServiceBtn = new JButton("Add Service");
-        JButton removeServiceBtn = new JButton("Remove Service");
-        
-        settingsBtn.setPreferredSize(new Dimension(150, 80));
         currentTransactionsBtn.setPreferredSize(new Dimension(150, 80));
         closedTransactionsBtn.setPreferredSize(new Dimension(150, 80));
         dailyReportsBtn.setPreferredSize(new Dimension(150, 80));
         
-        //populate settings tabs
-        settingsTab.setLayout(new BoxLayout(settingsTab, BoxLayout.Y_AXIS));
-        
-        settingsTab.add(addServiceBtn);
-        addServiceBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
-        addServiceBtn.setMaximumSize(new Dimension(200, 100));
-        
-        settingsTab.add(removeServiceBtn);
-        removeServiceBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
-        removeServiceBtn.setMaximumSize(new Dimension(200, 100));
-        
         //Add jpanels to the tabs jpanel, which is using cardLayout
-        tabs.add(settingsTab, "Settings");
         tabs.add(curTransTab, "Current Transactions");
         tabs.add(cloTransTab, "Closed Transactions");
         tabs.add(dailyTab, "Daily Reports");
@@ -106,17 +89,7 @@ public class POS extends JFrame{
         buttons.add(currentTransactionsBtn);
         buttons.add(closedTransactionsBtn);
         buttons.add(dailyReportsBtn);
-        buttons.add(settingsBtn);
         buttons.setBackground(Color.GRAY);
-        
-        //Set up buttons to switch jpanels based on which button was clicked
-        settingsBtn.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				cl.show(tabs, "Settings");
-				
-			}
-        });
         
         currentTransactionsBtn.addActionListener(new ActionListener(){
 			@Override
@@ -142,14 +115,6 @@ public class POS extends JFrame{
 			}
         });
         
-        addServiceBtn.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				addService();
-				
-			}
-        });
-        
         //Choose tab to display on startup
         cl.show(tabs, "Current Transactions");
         
@@ -160,62 +125,6 @@ public class POS extends JFrame{
         //Add the main panel (jframe) to JFrame
         frame.add(jframe);
 	}
-	
-	public static void connectDB() {
-		try {
-			System.out.println("Connecting.");
-			DriverManager.getConnection(DB_URL, USER, PASS );
-			System.out.println("Connected.");
-			
-		} catch (SQLException e) { 
-			System.out.println(e.getMessage());
-			System.out.println("Error connecting.");
-		}
-	}
-	
-	public void addService(){
-		String service = (String) JOptionPane.showInputDialog("Name of Service: ");
-		double price = Double.parseDouble((JOptionPane.showInputDialog("Price: ")));
-				  
-		try{
-		      //STEP 2: Register JDBC driver
-		      Class.forName("com.mysql.jdbc.Driver");
-
-		      //STEP 3: Open a connection
-		      System.out.println("Connecting to a selected database...");
-		      conn = DriverManager.getConnection(DB_URL, USER, PASS);
-		      System.out.println("Connected database successfully...");
-		      
-		      //STEP 4: Execute a query
-		      System.out.println("Inserting records into the table...");
-		      stmt = conn.createStatement();
-		      
-		      String sql = "INSERT INTO Services(Service, Price)" +
-		                   "VALUES ('" + service + "', '" + price + "')";
-		      stmt.executeUpdate(sql);
-		      
-		      System.out.println("Inserted records into the table...");
-
-		   }catch(SQLException se){
-		      //Handle errors for JDBC
-		      se.printStackTrace();
-		   }catch(Exception e){
-		      //Handle errors for Class.forName
-		      e.printStackTrace();
-		   }finally{
-		      //finally block used to close resources
-		      try{
-		         if(stmt!=null)
-		            conn.close();
-		      }catch(SQLException se){
-		      }// do nothing
-		      try{
-		         if(conn!=null)
-		            conn.close();
-		      }catch(SQLException se){
-		         se.printStackTrace();
-		      }//end finally try
-		   }//end try
-	
-	}
 }
+	
+	
