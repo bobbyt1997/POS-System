@@ -24,7 +24,7 @@ public class POS extends JFrame{
 	
 	//JDBC driver name and database URL
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
-	static final String DB_URL = "jdbc:mysql://localhost:3306/pos-db?useSSL=false";
+	static final String DB_URL = "jdbc:mysql://localhost:3306/pos?useSSL=false";
 					  
 	//Database credentials
 	static final String USER = "root";
