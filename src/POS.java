@@ -5,6 +5,10 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.Statement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,6 +21,16 @@ public class POS extends JFrame{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	//JDBC driver name and database URL
+	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
+	static final String DB_URL = "jdbc:mysql://localhost:3306/pos-db?useSSL=false";
+					  
+	//Database credentials
+	static final String USER = "root";
+	static final String PASS = "42597";
+	Connection conn = null;
+	Statement stmt = null;
 
 	public static void main(String[] args){
 		SwingUtilities.invokeLater(new Runnable() {
@@ -110,7 +124,19 @@ public class POS extends JFrame{
         
         //Add the main panel (jframe) to JFrame
         frame.add(jframe);
-        
+        connectDB();
+	}
+	
+	public static void connectDB() {
+		try {
+			System.out.println("Connecting.");
+			DriverManager.getConnection(DB_URL, USER, PASS );
+			System.out.println("Connected.");
+			
+		} catch (SQLException e) { 
+			System.out.println(e.getMessage());
+			System.out.println("Error connecting.");
+		}
 	}
 	
 }
