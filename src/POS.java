@@ -9,7 +9,6 @@ import java.beans.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -31,6 +30,15 @@ public class POS extends JFrame{
 	static final String PASS = "42597";
 	Connection conn = null;
 	Statement stmt = null;
+	
+	//Create all necessary jpanels
+	JPanel jframe = new JPanel(new BorderLayout());
+    JPanel tabs = new JPanel(cl);
+    JPanel buttons = new JPanel();
+    JPanel settingsTab = new JPanel();
+    JPanel curTransTab = new JPanel();
+    JPanel cloTransTab = new JPanel();
+    JPanel dailyTab = new JPanel();
 
 	public static void main(String[] args){
 		SwingUtilities.invokeLater(new Runnable() {
@@ -51,15 +59,6 @@ public class POS extends JFrame{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
 		CardLayout cl = new CardLayout();
-		
-		//Create all necessary jpanels
-		JPanel jframe = new JPanel(new BorderLayout());
-        JPanel tabs = new JPanel(cl);
-        JPanel buttons = new JPanel();
-        JPanel settingsTab = new JPanel();
-        JPanel curTransTab = new JPanel();
-        JPanel cloTransTab = new JPanel();
-        JPanel dailyTab = new JPanel();
         
         //Create buttons
         JButton currentTransactionsBtn = new JButton("Current Transaction");
@@ -137,6 +136,11 @@ public class POS extends JFrame{
 			System.out.println(e.getMessage());
 			System.out.println("Error connecting.");
 		}
+	}
+	
+	public void addService(){
+		
+		
 	}
 	
 }
