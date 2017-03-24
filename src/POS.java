@@ -54,10 +54,15 @@ public class POS extends JFrame{
         dailyTab.setBackground(Color.BLACK);
         
         //Create buttons
-        JButton settingsBtn = new JButton("Settings");
         JButton currentTransactionsBtn = new JButton("Current Transaction");
         JButton closedTransactionsBtn = new JButton("Closed Transactions");
-        JButton dailyReportBtn = new JButton("Settings");
+        JButton dailyReportsBtn = new JButton("Daily Reports");
+        JButton settingsBtn = new JButton("Settings");
+        
+        settingsBtn.setPreferredSize(new Dimension(150, 80));
+        currentTransactionsBtn.setPreferredSize(new Dimension(150, 80));
+        closedTransactionsBtn.setPreferredSize(new Dimension(150, 80));
+        dailyReportsBtn.setPreferredSize(new Dimension(150, 80));
         
         //Add jpanels to the tabs jpanel, which is using cardLayout
         tabs.add(settingsTab, "Settings");
@@ -66,10 +71,10 @@ public class POS extends JFrame{
         tabs.add(dailyTab, "Daily Reports");
         
         //Add existing buttons to the buttons jpanel
-        buttons.add(settingsBtn);
         buttons.add(currentTransactionsBtn);
         buttons.add(closedTransactionsBtn);
-        buttons.add(dailyReportBtn);
+        buttons.add(dailyReportsBtn);
+        buttons.add(settingsBtn);
         
         //Set up buttons to switch jpanels based on which button was clicked
         settingsBtn.addActionListener(new ActionListener(){
@@ -96,7 +101,7 @@ public class POS extends JFrame{
 			}
         });
         
-        dailyReportBtn.addActionListener(new ActionListener(){
+        dailyReportsBtn.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				cl.show(tabs, "Daily Reports");
