@@ -9,6 +9,8 @@ import java.beans.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -77,6 +79,7 @@ public class POS extends JFrame{
         
         //Create buttons for settings tab
         JButton addServiceBtn = new JButton("Add Service");
+        JButton removeServiceBtn = new JButton("Remove Service");
         
         settingsBtn.setPreferredSize(new Dimension(150, 80));
         currentTransactionsBtn.setPreferredSize(new Dimension(150, 80));
@@ -85,6 +88,7 @@ public class POS extends JFrame{
         
         //populate settings tabs
         settingsTab.add(addServiceBtn);
+        settingsTab.add(removeServiceBtn);
         
         //Add jpanels to the tabs jpanel, which is using cardLayout
         tabs.add(settingsTab, "Settings");
@@ -131,6 +135,9 @@ public class POS extends JFrame{
 				
 			}
         });
+        
+        //Choose tab to display on startup
+        cl.show(tabs, "Current Transactions");
         
         //Add the tabs and buttons jpanel to the main jframe panel
         jframe.add(tabs, BorderLayout.CENTER);
