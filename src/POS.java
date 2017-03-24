@@ -2,6 +2,7 @@
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -87,8 +88,15 @@ public class POS extends JFrame{
         dailyReportsBtn.setPreferredSize(new Dimension(150, 80));
         
         //populate settings tabs
+        settingsTab.setLayout(new BoxLayout(settingsTab, BoxLayout.Y_AXIS));
+        
         settingsTab.add(addServiceBtn);
+        addServiceBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
+        addServiceBtn.setMaximumSize(new Dimension(200, 100));
+        
         settingsTab.add(removeServiceBtn);
+        removeServiceBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
+        removeServiceBtn.setMaximumSize(new Dimension(200, 100));
         
         //Add jpanels to the tabs jpanel, which is using cardLayout
         tabs.add(settingsTab, "Settings");
@@ -145,7 +153,7 @@ public class POS extends JFrame{
         
         //Add the main panel (jframe) to JFrame
         frame.add(jframe);
-        connectDB();
+        //connectDB();
 	}
 	
 	public static void connectDB() {
