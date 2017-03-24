@@ -47,12 +47,6 @@ public class POS extends JFrame{
         JPanel cloTransTab = new JPanel();
         JPanel dailyTab = new JPanel();
         
-        //CHANGE COLOR OF BACKGROUNDS FOR TESTING
-        settingsTab.setBackground(Color.BLUE);
-        curTransTab.setBackground(Color.RED);
-        cloTransTab.setBackground(Color.GRAY);
-        dailyTab.setBackground(Color.BLACK);
-        
         //Create buttons
         JButton currentTransactionsBtn = new JButton("Current Transaction");
         JButton closedTransactionsBtn = new JButton("Closed Transactions");
@@ -75,6 +69,7 @@ public class POS extends JFrame{
         buttons.add(closedTransactionsBtn);
         buttons.add(dailyReportsBtn);
         buttons.add(settingsBtn);
+        buttons.setBackground(Color.GRAY);
         
         //Set up buttons to switch jpanels based on which button was clicked
         settingsBtn.addActionListener(new ActionListener(){
