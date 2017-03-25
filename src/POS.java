@@ -4,6 +4,7 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
@@ -27,8 +28,8 @@ public class POS extends JFrame{
 	//Database credentials
 	static final String USER = "root";
 	static final String PASS = "42597";
-	Connection conn = null;
-	Statement stmt = null;
+	static Connection conn = null;
+	static Statement stmt = null;
 	
 	//Create all necessary jpanels
 	JPanel jframe;
@@ -43,13 +44,19 @@ public class POS extends JFrame{
     JButton closedTransactionsBtn;
     JButton dailyReportsBtn;
     JButton fullSet, fillIn, manicure, pedicure, manPed, nailRepair, 
-    nailsPolishCh, toesPolishCh;
+    polishCh;
 
 	public static void main(String[] args){
 		SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
                 new POS();
+                try {
+					retrievePrice();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
 	}
@@ -69,7 +76,7 @@ public class POS extends JFrame{
 		jframe = new JPanel(new BorderLayout());
 	    tabs = new JPanel(cl);
 	    buttons = new JPanel();
-	    curTransTab = new JPanel(new BorderLayout());
+	    curTransTab = new JPanel();
 	    cloTransTab = new JPanel();
 	    dailyTab = new JPanel();
         
@@ -85,13 +92,23 @@ public class POS extends JFrame{
         pedicure = new JButton("Pedicure");
         manPed = new JButton("Mani/Pedi");
         nailRepair = new JButton("Nail Repair");
-        nailsPolishCh = new JButton("Nails Polish Change");
-        toesPolishCh = new JButton("Toes Polish Change");
+        polishCh = new JButton("Polish Change");
         
         
         currentTransactionsBtn.setPreferredSize(new Dimension(150, 80));
         closedTransactionsBtn.setPreferredSize(new Dimension(150, 80));
         dailyReportsBtn.setPreferredSize(new Dimension(150, 80));
+        
+        //Add service buttons to current transaction tab
+        curTransTab.setLayout(new GridLayout(0,2));
+        
+        curTransTab.add(fullSet);
+        curTransTab.add(fillIn);
+        curTransTab.add(manicure);
+        curTransTab.add(pedicure);
+        curTransTab.add(manPed);
+        curTransTab.add(nailRepair);
+        curTransTab.add(polishCh);
         
         //Add jpanels to the tabs jpanel, which is using cardLayout
         tabs.add(curTransTab, "Current Transactions");
@@ -137,6 +154,24 @@ public class POS extends JFrame{
         
         //Add the main panel (jframe) to JFrame
         frame.add(jframe);
+	}
+	
+	public static void retrievePrice() throws SQLException{
+		try {
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+	        stmt = conn.createStatement();
+	        ResultSet rs = stmt.executeQuery("select * from Services");
+	        while (rs.next()) {
+	            String service = rs.getString("Service");
+	            double price = rs.getDouble("Price");
+	            System.out.println(service + "\t\t$" + price);
+	        }
+	    } catch (SQLException e ) {
+	        e.getMessage();
+	    } finally {
+	        if (stmt != null) { stmt.close(); }
+	    }
+
 	}
 }
 	
