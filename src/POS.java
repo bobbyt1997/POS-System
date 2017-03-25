@@ -51,12 +51,6 @@ public class POS extends JFrame{
             @Override
             public void run() {
                 new POS();
-                try {
-					retrievePrice();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
             }
         });
 	}
@@ -156,22 +150,21 @@ public class POS extends JFrame{
         frame.add(jframe);
 	}
 	
-	public static void retrievePrice() throws SQLException{
+	public static double retrievePrice(String whichService) throws SQLException{
 		try {
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 	        stmt = conn.createStatement();
-	        ResultSet rs = stmt.executeQuery("select * from Services");
+	        ResultSet rs = stmt.executeQuery("select * from Services where Service = '" + whichService + "'");
 	        while (rs.next()) {
-	            String service = rs.getString("Service");
 	            double price = rs.getDouble("Price");
-	            System.out.println(service + "\t\t$" + price);
+	            return price;
 	        }
 	    } catch (SQLException e ) {
 	        e.getMessage();
 	    } finally {
 	        if (stmt != null) { stmt.close(); }
 	    }
-
+		return 0;
 	}
 }
 	
