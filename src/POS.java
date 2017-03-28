@@ -4,6 +4,7 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,6 +16,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 
 public class POS extends JFrame{
@@ -39,12 +42,16 @@ public class POS extends JFrame{
     JPanel cloTransTab;
     JPanel dailyTab;
     
-  //Create buttons to switch between cards in cardlayout
+    //Create buttons to switch between cards in cardlayout
     JButton currentTransactionsBtn;
     JButton closedTransactionsBtn;
     JButton dailyReportsBtn;
     JButton fullSet, fillIn, manicure, pedicure, manPed, nailRepair, 
     polishCh;
+    
+    //Create a table
+    JTable tab;
+    JScrollPane scrollPane;
 
 	public static void main(String[] args){
 		SwingUtilities.invokeLater(new Runnable() {
@@ -81,13 +88,24 @@ public class POS extends JFrame{
         
         //Create buttons for actual services
         fullSet = new JButton("Full Set");
+        fullSet.setFont(new Font("Arial", Font.PLAIN, 25));
         fillIn = new JButton("Fill-In");
+        fillIn.setFont(new Font("Arial", Font.PLAIN, 25));
         manicure = new JButton("Manicure");
+        manicure.setFont(new Font("Arial", Font.PLAIN, 25));
         pedicure = new JButton("Pedicure");
+        pedicure.setFont(new Font("Arial", Font.PLAIN, 25));
         manPed = new JButton("Mani/Pedi");
+        manPed.setFont(new Font("Arial", Font.PLAIN, 25));
         nailRepair = new JButton("Nail Repair");
+        nailRepair.setFont(new Font("Arial", Font.PLAIN, 25));
         polishCh = new JButton("Polish Change");
+        polishCh.setFont(new Font("Arial", Font.PLAIN, 25));
         
+        //Initialize table
+        tab = new JTable();
+        scrollPane = new JScrollPane(tab);
+        tab.setFillsViewportHeight(true);
         
         currentTransactionsBtn.setPreferredSize(new Dimension(150, 80));
         closedTransactionsBtn.setPreferredSize(new Dimension(150, 80));
@@ -95,7 +113,8 @@ public class POS extends JFrame{
         
         //Add service buttons to current transaction tab
         curTransTab.setLayout(new GridLayout(0,2));
-        
+     
+        curTransTab.add(scrollPane);
         curTransTab.add(fullSet);
         curTransTab.add(fillIn);
         curTransTab.add(manicure);
@@ -138,6 +157,184 @@ public class POS extends JFrame{
 				
 			}
         });
+        
+        //***************************Provide service buttons with an action***************************
+        manicure.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String[] buttons = { "Regular", "No Chip" };
+
+			    int type = JOptionPane.showOptionDialog(null, "Regular or No Chip Manicure?", "Manicure",
+			        JOptionPane.DEFAULT_OPTION, 0, null, buttons, buttons[0]);
+
+			    if( type == 1 ){
+			    	try {
+						System.out.format("\n%-32s%-10.2f", "No Chip Manicure", retrievePrice("No Chip Mani"));
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.getMessage();
+					}
+			    }
+			    else{
+			    	try {
+			    		System.out.format("\n%-32s%-10.2f", "Reg. Manicure", retrievePrice("Manicure"));
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.getMessage();
+					}
+			    }
+			}
+        });
+        	
+        manPed.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					System.out.format("\n%-32s%-10.2f", "Reg. Mani/Pedi", retrievePrice("Mani/Pedi"));
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+        });
+        
+        polishCh.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String[] buttons = { "Nails", "Toes" };
+
+			    int type = JOptionPane.showOptionDialog(null, "", "Polish Change",
+			        JOptionPane.DEFAULT_OPTION, 0, null, buttons, buttons[0]);
+
+			    if( type == 1 ){
+			    	try {
+						System.out.format("\n%-32s%-10.2f", "Toes Polish Change", retrievePrice("Toes Polish Change"));
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.getMessage();
+					}
+			    }
+			    else{
+			    	try {
+			    		System.out.format("\n%-32s%-10.2f", "Nails Polish Change", retrievePrice("Nails Polish Change"));
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.getMessage();
+					}
+			    }
+			}
+        });
+        
+        pedicure.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String[] buttons = { "Regular", "No Chip" };
+
+			    int type = JOptionPane.showOptionDialog(null, "Regular or No Chip Pedicure?", "Pedicure",
+			        JOptionPane.DEFAULT_OPTION, 0, null, buttons, buttons[0]);
+
+			    if( type == 1 ){
+			    	try {
+						System.out.format("\n%-32s%-10.2f", "No Chip Pedicure", retrievePrice("No Chip Pedi"));
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.getMessage();
+					}
+			    }
+			    else{
+			    	try {
+			    		System.out.format("\n%-32s%-10.2f", "Reg. Pedicure", retrievePrice("Pedicure"));
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.getMessage();
+					}
+			    }
+			}
+        });
+        
+        nailRepair.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					System.out.format("\n%-32s%-10.2f", "Nail Repair", retrievePrice("Nail Repair"));
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+        });
+        
+        fullSet.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String[] buttons = { "Pink & White", "Gel", "Acrylic" };
+
+			    int type = JOptionPane.showOptionDialog(null, "What kind of Full-Set?", "Full-Set",
+			        JOptionPane.DEFAULT_OPTION, 0, null, buttons, buttons[1]);
+
+			    if( type == 0 ){
+			    	try {
+						System.out.format("\n%-32s%-10.2f", "Full-Set (Pink & White)", retrievePrice("Pink & White Full"));
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.getMessage();
+					}
+			    }
+			    else if(type == 1){
+			    	try {
+			    		System.out.format("\n%-32s%-10.2f", "Full-Set (Gel)", retrievePrice("Gel Full-Set"));
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.getMessage();
+					}
+			    }
+			    else{
+			    	try {
+			    		System.out.format("\n%-32s%-10.2f", "Full-Set (Acrylic)", retrievePrice("Acrylic Full-Set"));
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.getMessage();
+					}
+			    }
+			}
+        });
+        
+        fillIn.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String[] buttons = { "Pink & White", "Gel", "Acrylic" };
+
+			    int type = JOptionPane.showOptionDialog(null, "What kind of Fill-In?", "Fill-In",
+			        JOptionPane.DEFAULT_OPTION, 0, null, buttons, buttons[1]);
+
+			    if( type == 0 ){
+			    	try {
+						System.out.format("\n%-32s%-10.2f", "Fill-In (Pink & White)", retrievePrice("Pink & White Fill-In"));
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.getMessage();
+					}
+			    }
+			    else if(type == 1){
+			    	try {
+			    		System.out.format("\n%-32s%-10.2f", "Fill-In (Gel)", retrievePrice("Gel Fill-In"));
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.getMessage();
+					}
+			    }
+			    else{
+			    	try {
+			    		System.out.format("\n%-32s%-10.2f", "Fill-In (Acrylic)", retrievePrice("Acrylic Fill-In"));
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.getMessage();
+					}
+			    }
+			}
+        });
+      //********************************************************************************************
+        
         
         //Choose tab to display on startup
         cl.show(tabs, "Current Transactions");
