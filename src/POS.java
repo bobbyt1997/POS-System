@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableModel;
 
 public class POS extends JFrame{
 	
@@ -50,8 +51,9 @@ public class POS extends JFrame{
     polishCh;
     
     //Create a table
-    JTable tab;
-    JScrollPane scrollPane;
+    private String[] colNames = { "Service", "Price"};
+    private DefaultTableModel model = new DefaultTableModel(colNames, 0);
+    private JTable table = new JTable(model);
 
 	public static void main(String[] args){
 		SwingUtilities.invokeLater(new Runnable() {
@@ -101,12 +103,7 @@ public class POS extends JFrame{
         nailRepair.setFont(new Font("Arial", Font.PLAIN, 25));
         polishCh = new JButton("Polish Change");
         polishCh.setFont(new Font("Arial", Font.PLAIN, 25));
-        
-        //Initialize table
-        tab = new JTable();
-        scrollPane = new JScrollPane(tab);
-        tab.setFillsViewportHeight(true);
-        
+
         currentTransactionsBtn.setPreferredSize(new Dimension(150, 80));
         closedTransactionsBtn.setPreferredSize(new Dimension(150, 80));
         dailyReportsBtn.setPreferredSize(new Dimension(150, 80));
@@ -114,7 +111,7 @@ public class POS extends JFrame{
         //Add service buttons to current transaction tab
         curTransTab.setLayout(new GridLayout(0,2));
      
-        curTransTab.add(scrollPane);
+        curTransTab.add(new JScrollPane(table));
         curTransTab.add(fullSet);
         curTransTab.add(fillIn);
         curTransTab.add(manicure);
@@ -163,21 +160,31 @@ public class POS extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String[] buttons = { "Regular", "No Chip" };
+				
+				double price;
+				
+				String typeString;
 
 			    int type = JOptionPane.showOptionDialog(null, "Regular or No Chip Manicure?", "Manicure",
 			        JOptionPane.DEFAULT_OPTION, 0, null, buttons, buttons[0]);
 
 			    if( type == 1 ){
+			    	typeString = "No Chip Manicure";
 			    	try {
 						System.out.format("\n%-32s%-10.2f", "No Chip Manicure", retrievePrice("No Chip Mani"));
+						price = retrievePrice("No Chip Mani");
+						model.addRow(new Object[]{typeString, price});
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.getMessage();
 					}
 			    }
 			    else{
+			    	typeString = "Reg. Manicure ";
 			    	try {
 			    		System.out.format("\n%-32s%-10.2f", "Reg. Manicure", retrievePrice("Manicure"));
+			    		price = retrievePrice("Manicure");
+			    		model.addRow(new Object[]{typeString, price});
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.getMessage();
