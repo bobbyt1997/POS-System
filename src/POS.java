@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.sql.*;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -39,6 +40,10 @@ public class POS extends JFrame{
     JPanel cloTransTab;
     JPanel dailyTab;
     JPanel endBtns;
+    JPanel total;
+    
+    //Create jlabel to display the total price
+    JLabel totalLabel, totalLabel2;
     
     //Create buttons to switch between cards in cardlayout
     JButton currentTransactionsBtn;
@@ -80,6 +85,7 @@ public class POS extends JFrame{
 	    cloTransTab = new JPanel();
 	    dailyTab = new JPanel();
 	    endBtns = new JPanel();
+	    total = new JPanel();
         
         //Create buttons to switch between cards in cardlayout
         currentTransactionsBtn = new JButton("Current Transaction");
@@ -114,6 +120,7 @@ public class POS extends JFrame{
         curTransTab.setLayout(new GridLayout(0,2));
      
         curTransTab.add(new JScrollPane(table));
+        curTransTab.add(total);
         curTransTab.add(fullSet);
         curTransTab.add(fillIn);
         curTransTab.add(manicure);
@@ -128,7 +135,13 @@ public class POS extends JFrame{
         tabs.add(cloTransTab, "Closed Transactions");
         tabs.add(dailyTab, "Daily Reports");
         
-        //Add existing buttons to the buttons jpanel
+        //Initialize labels that are responsible for the display of the total
+        totalLabel = new JLabel("TOTAL PRICE: ");
+        totalLabel.setFont(new Font("Arial", Font.PLAIN, 25));
+        totalLabel2 = new JLabel("$xx.xx");
+        totalLabel2.setFont(new Font("Arial", Font.PLAIN, 25));
+        
+        //Add existing buttons to the buttons jpanels
         buttons.add(currentTransactionsBtn);
         buttons.add(closedTransactionsBtn);
         buttons.add(dailyReportsBtn);
@@ -137,6 +150,13 @@ public class POS extends JFrame{
         endBtns.add(voidSelection);
         endBtns.add(voidAll);
         endBtns.setBackground(Color.GRAY);
+        
+        //Add total label to the total panel
+        total.add(totalLabel);
+        total.add(totalLabel2);
+        
+        //Change table text size
+        table.setFont(new Font("Arial", Font.PLAIN, 14));
         
         currentTransactionsBtn.addActionListener(new ActionListener(){
 			@Override
@@ -408,10 +428,14 @@ public class POS extends JFrame{
         voidAll.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				while(model.getRowCount() > 0)
-				{
-				    model.removeRow(0);
-				}
+				int result = JOptionPane.showConfirmDialog(null, 
+						   "Void Transaction?",null, JOptionPane.YES_NO_OPTION);
+				if(result == JOptionPane.YES_OPTION) {
+					while(model.getRowCount() > 0)
+					{
+					    model.removeRow(0);
+					}
+				} 
 			}
         });
       //********************************************************************************************
