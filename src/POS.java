@@ -136,10 +136,10 @@ public class POS extends JFrame{
         tabs.add(dailyTab, "Daily Reports");
         
         //Initialize labels that are responsible for the display of the total
-        totalLabel = new JLabel("TOTAL PRICE: ");
-        totalLabel.setFont(new Font("Arial", Font.PLAIN, 25));
+        totalLabel = new JLabel("TOTAL: ");
+        totalLabel.setFont(new Font("Arial", Font.PLAIN, 30));
         totalLabel2 = new JLabel("$xx.xx");
-        totalLabel2.setFont(new Font("Arial", Font.PLAIN, 25));
+        totalLabel2.setFont(new Font("Arial", Font.PLAIN, 35));
         
         //Add existing buttons to the buttons jpanels
         buttons.add(currentTransactionsBtn);
