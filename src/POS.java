@@ -43,7 +43,7 @@ public class POS extends JFrame{
     JPanel total;
     
     //Create jlabel to display the total price
-    JLabel totalLabel, totalLabel2;
+    JLabel totalLabel;
     
     //Create buttons to switch between cards in cardlayout
     JButton currentTransactionsBtn;
@@ -138,8 +138,6 @@ public class POS extends JFrame{
         //Initialize labels that are responsible for the display of the total
         totalLabel = new JLabel("TOTAL: ");
         totalLabel.setFont(new Font("Arial", Font.PLAIN, 30));
-        totalLabel2 = new JLabel("$xx.xx");
-        totalLabel2.setFont(new Font("Arial", Font.PLAIN, 35));
         
         //Add existing buttons to the buttons jpanels
         buttons.add(currentTransactionsBtn);
@@ -153,7 +151,6 @@ public class POS extends JFrame{
         
         //Add total label to the total panel
         total.add(totalLabel);
-        total.add(totalLabel2);
         
         //Change table text size
         table.setFont(new Font("Arial", Font.PLAIN, 14));
