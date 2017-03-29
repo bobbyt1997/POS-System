@@ -44,7 +44,7 @@ public class POS extends JFrame{
     JButton closedTransactionsBtn;
     JButton dailyReportsBtn;
     JButton fullSet, fillIn, manicure, pedicure, manPed, nailRepair, 
-    polishCh;
+    polishCh, voidSelection;
     
     //Create a table
     private String[] colNames = { "Service", "Price"};
@@ -99,6 +99,8 @@ public class POS extends JFrame{
         nailRepair.setFont(new Font("Arial", Font.PLAIN, 25));
         polishCh = new JButton("Polish Change");
         polishCh.setFont(new Font("Arial", Font.PLAIN, 25));
+        voidSelection = new JButton("Void Selection");
+        voidSelection.setFont(new Font("Arial", Font.PLAIN, 25));
 
         currentTransactionsBtn.setPreferredSize(new Dimension(150, 80));
         closedTransactionsBtn.setPreferredSize(new Dimension(150, 80));
@@ -115,6 +117,7 @@ public class POS extends JFrame{
         curTransTab.add(manPed);
         curTransTab.add(nailRepair);
         curTransTab.add(polishCh);
+        curTransTab.add(voidSelection);
         
         //Add jpanels to the tabs jpanel, which is using cardLayout
         tabs.add(curTransTab, "Current Transactions");
@@ -381,6 +384,16 @@ public class POS extends JFrame{
 						e1.getMessage();
 					}
 			    }
+			}
+        });
+        
+        voidSelection.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (table.getSelectedRow() != -1) {
+		            // remove selected row from the model
+		            model.removeRow(table.getSelectedRow());
+		        }
 			}
         });
       //********************************************************************************************
