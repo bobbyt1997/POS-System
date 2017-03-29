@@ -137,7 +137,7 @@ public class POS extends JFrame{
         tabs.add(dailyTab, "Daily Reports");
         
         //Initialize labels that are responsible for the display of the total
-        totalLabel = new JLabel("TOTAL: ");
+        totalLabel = new JLabel();
         totalLabel.setFont(new Font("Arial", Font.PLAIN, 30));
         
         //Add existing buttons to the buttons jpanels
@@ -431,10 +431,16 @@ public class POS extends JFrame{
         voidSelection.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				double priceToSubtract = 0;
+				
 				if (table.getSelectedRow() != -1) {
+					priceToSubtract = Double.parseDouble(((String) table.getValueAt(table.getSelectedRow(), 1)).substring(1));
 		            // remove selected row from the model
 		            model.removeRow(table.getSelectedRow());
 		        }
+				
+				totalPrice -= priceToSubtract;
+				totalLabel.setText(String.format("Total: $" + "%-10.2f", totalPrice));
 			}
         });
         
@@ -449,6 +455,8 @@ public class POS extends JFrame{
 					    model.removeRow(0);
 					}
 				} 
+				
+				totalLabel.setText("");
 			}
         });
       //********************************************************************************************
