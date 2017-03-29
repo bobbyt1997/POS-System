@@ -144,11 +144,11 @@ public class POS extends JFrame{
         buttons.add(currentTransactionsBtn);
         buttons.add(closedTransactionsBtn);
         buttons.add(dailyReportsBtn);
-        buttons.setBackground(Color.GRAY);
+        buttons.setBackground(Color.DARK_GRAY);
         
         endBtns.add(voidSelection);
         endBtns.add(voidAll);
-        endBtns.setBackground(Color.GRAY);
+        endBtns.setBackground(Color.DARK_GRAY);
         
         //Add total label to the total panel
         total.add(totalLabel);
@@ -455,7 +455,7 @@ public class POS extends JFrame{
 					    model.removeRow(0);
 					}
 				} 
-				
+				totalPrice = 0;
 				totalLabel.setText("");
 			}
         });
