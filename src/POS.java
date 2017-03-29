@@ -44,7 +44,7 @@ public class POS extends JFrame{
     JButton closedTransactionsBtn;
     JButton dailyReportsBtn;
     JButton fullSet, fillIn, manicure, pedicure, manPed, nailRepair, 
-    polishCh, voidSelection;
+    polishCh, voidSelection, voidAll;
     
     //Create a table
     private String[] colNames = { "Service", "Price"};
@@ -101,6 +101,8 @@ public class POS extends JFrame{
         polishCh.setFont(new Font("Arial", Font.PLAIN, 25));
         voidSelection = new JButton("Void Selection");
         voidSelection.setFont(new Font("Arial", Font.PLAIN, 25));
+        voidAll = new JButton("Void Transaction");
+        voidAll.setFont(new Font("Arial", Font.PLAIN, 25));
 
         currentTransactionsBtn.setPreferredSize(new Dimension(150, 80));
         closedTransactionsBtn.setPreferredSize(new Dimension(150, 80));
@@ -118,6 +120,7 @@ public class POS extends JFrame{
         curTransTab.add(nailRepair);
         curTransTab.add(polishCh);
         curTransTab.add(voidSelection);
+        curTransTab.add(voidAll);
         
         //Add jpanels to the tabs jpanel, which is using cardLayout
         tabs.add(curTransTab, "Current Transactions");
@@ -219,7 +222,7 @@ public class POS extends JFrame{
 			        JOptionPane.DEFAULT_OPTION, 0, null, buttons, buttons[0]);
 
 			    if( type == 1 ){
-			    	typeString = "Toes";
+			    	typeString = "Toes Polish Change";
 			    	try {
 						System.out.format("\n%-32s%-10.2f", "Toes Polish Change", retrievePrice("Toes Polish Change"));
 						price = retrievePrice("Toes Polish Change");
@@ -230,7 +233,7 @@ public class POS extends JFrame{
 					}
 			    }
 			    else{
-			    	typeString = "Nails";
+			    	typeString = "Nails Polish Change";
 			    	try {
 			    		System.out.format("\n%-32s%-10.2f", "Nails Polish Change", retrievePrice("Nails Polish Change"));
 			    		price = retrievePrice("Nails Polish Change");
@@ -396,6 +399,16 @@ public class POS extends JFrame{
 		        }
 			}
         });
+        
+        voidAll.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				while(model.getRowCount() > 0)
+				{
+				    model.removeRow(0);
+				}
+			}
+        });
       //********************************************************************************************
         
         
@@ -427,5 +440,3 @@ public class POS extends JFrame{
 		return 0;
 	}
 }
-	
-	
