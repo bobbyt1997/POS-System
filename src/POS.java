@@ -456,7 +456,7 @@ public class POS extends JFrame{
 					}
 				} 
 				totalPrice = 0;
-				totalLabel.setText("");
+				totalLabel.setText(String.format("Total: $" + "%-10.2f", 0.00));
 			}
         });
       //********************************************************************************************
