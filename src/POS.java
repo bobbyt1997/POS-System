@@ -38,6 +38,7 @@ public class POS extends JFrame{
     JPanel curTransTab;
     JPanel cloTransTab;
     JPanel dailyTab;
+    JPanel endBtns;
     
     //Create buttons to switch between cards in cardlayout
     JButton currentTransactionsBtn;
@@ -78,6 +79,7 @@ public class POS extends JFrame{
 	    curTransTab = new JPanel();
 	    cloTransTab = new JPanel();
 	    dailyTab = new JPanel();
+	    endBtns = new JPanel();
         
         //Create buttons to switch between cards in cardlayout
         currentTransactionsBtn = new JButton("Current Transaction");
@@ -119,8 +121,7 @@ public class POS extends JFrame{
         curTransTab.add(manPed);
         curTransTab.add(nailRepair);
         curTransTab.add(polishCh);
-        curTransTab.add(voidSelection);
-        curTransTab.add(voidAll);
+        curTransTab.add(endBtns, BorderLayout.PAGE_END);
         
         //Add jpanels to the tabs jpanel, which is using cardLayout
         tabs.add(curTransTab, "Current Transactions");
@@ -132,6 +133,10 @@ public class POS extends JFrame{
         buttons.add(closedTransactionsBtn);
         buttons.add(dailyReportsBtn);
         buttons.setBackground(Color.GRAY);
+        
+        endBtns.add(voidSelection);
+        endBtns.add(voidAll);
+        endBtns.setBackground(Color.GRAY);
         
         currentTransactionsBtn.addActionListener(new ActionListener(){
 			@Override
