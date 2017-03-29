@@ -428,9 +428,9 @@ public class POS extends JFrame{
         voidAll.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int result = JOptionPane.showConfirmDialog(null, 
-						   "Void Transaction?",null, JOptionPane.YES_NO_OPTION);
-				if(result == JOptionPane.YES_OPTION) {
+				int result = JOptionPane.showOptionDialog(null, "Void Transaction?", "Confirmation",
+				        JOptionPane.DEFAULT_OPTION, 0, null, new String[] {"Yes", "No"}, "No");
+				if(result == 0) {
 					while(model.getRowCount() > 0)
 					{
 					    model.removeRow(0);
