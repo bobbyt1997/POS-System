@@ -158,7 +158,6 @@ public class POS extends JFrame{
 				String[] buttons = { "Regular", "No Chip" };
 				
 				double price;
-				
 				String typeString;
 
 			    int type = JOptionPane.showOptionDialog(null, "Regular or No Chip Manicure?", "Manicure",
@@ -169,7 +168,7 @@ public class POS extends JFrame{
 			    	try {
 						System.out.format("\n%-32s%-10.2f", "No Chip Manicure", retrievePrice("No Chip Mani"));
 						price = retrievePrice("No Chip Mani");
-						model.addRow(new Object[]{typeString, price});
+						model.addRow(new Object[]{typeString, "$" + price});
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.getMessage();
@@ -180,7 +179,7 @@ public class POS extends JFrame{
 			    	try {
 			    		System.out.format("\n%-32s%-10.2f", "Reg. Manicure", retrievePrice("Manicure"));
 			    		price = retrievePrice("Manicure");
-			    		model.addRow(new Object[]{typeString, price});
+			    		model.addRow(new Object[]{typeString, "$" + price});
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.getMessage();
@@ -192,8 +191,13 @@ public class POS extends JFrame{
         manPed.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				double price;
+				String typeString = "Mani/Pedi";
+				
 				try {
 					System.out.format("\n%-32s%-10.2f", "Reg. Mani/Pedi", retrievePrice("Mani/Pedi"));
+					price = retrievePrice("Mani/Pedi");
+					model.addRow(new Object[]{typeString, "$" + price});
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -205,21 +209,29 @@ public class POS extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String[] buttons = { "Nails", "Toes" };
+				double price;
+				String typeString;
 
 			    int type = JOptionPane.showOptionDialog(null, "", "Polish Change",
 			        JOptionPane.DEFAULT_OPTION, 0, null, buttons, buttons[0]);
 
 			    if( type == 1 ){
+			    	typeString = "Toes";
 			    	try {
 						System.out.format("\n%-32s%-10.2f", "Toes Polish Change", retrievePrice("Toes Polish Change"));
+						price = retrievePrice("Toes Polish Change");
+						model.addRow(new Object[]{typeString, "$" + price});
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.getMessage();
 					}
 			    }
 			    else{
+			    	typeString = "Nails";
 			    	try {
 			    		System.out.format("\n%-32s%-10.2f", "Nails Polish Change", retrievePrice("Nails Polish Change"));
+			    		price = retrievePrice("Nails Polish Change");
+						model.addRow(new Object[]{typeString, "$" + price});
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.getMessage();
@@ -232,21 +244,29 @@ public class POS extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String[] buttons = { "Regular", "No Chip" };
+				String typeString;
+				double price;
 
 			    int type = JOptionPane.showOptionDialog(null, "Regular or No Chip Pedicure?", "Pedicure",
 			        JOptionPane.DEFAULT_OPTION, 0, null, buttons, buttons[0]);
 
 			    if( type == 1 ){
+			    	typeString = "No Chip Pedicure";
 			    	try {
 						System.out.format("\n%-32s%-10.2f", "No Chip Pedicure", retrievePrice("No Chip Pedi"));
+						price = retrievePrice("No Chip Pedi");
+						model.addRow(new Object[]{typeString, "$" + price});
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.getMessage();
 					}
 			    }
 			    else{
+			    	typeString = "Reg. Pedicure";
 			    	try {
 			    		System.out.format("\n%-32s%-10.2f", "Reg. Pedicure", retrievePrice("Pedicure"));
+			    		price = retrievePrice("Pedicure");
+						model.addRow(new Object[]{typeString, "$" + price});
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.getMessage();
@@ -258,8 +278,13 @@ public class POS extends JFrame{
         nailRepair.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				String typeString;
+				double price;
 				try {
+					typeString = "Nail Repair";
 					System.out.format("\n%-32s%-10.2f", "Nail Repair", retrievePrice("Nail Repair"));
+					price = retrievePrice("Nail Repair");
+					model.addRow(new Object[]{typeString, "$" + price});
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -271,29 +296,40 @@ public class POS extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String[] buttons = { "Pink & White", "Gel", "Acrylic" };
+				String typeString;
+				double price;
 
 			    int type = JOptionPane.showOptionDialog(null, "What kind of Full-Set?", "Full-Set",
 			        JOptionPane.DEFAULT_OPTION, 0, null, buttons, buttons[1]);
 
 			    if( type == 0 ){
+			    	typeString = "Pink & White Full";
 			    	try {
 						System.out.format("\n%-32s%-10.2f", "Full-Set (Pink & White)", retrievePrice("Pink & White Full"));
+						price = retrievePrice("Pink & White Full");
+						model.addRow(new Object[]{typeString, "$" + price});
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.getMessage();
 					}
 			    }
 			    else if(type == 1){
+			    	typeString = "Gel Full-Set";
 			    	try {
 			    		System.out.format("\n%-32s%-10.2f", "Full-Set (Gel)", retrievePrice("Gel Full-Set"));
+			    		price = retrievePrice("Gel Full-Set");
+			    		model.addRow(new Object[]{typeString, "$" + price});
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.getMessage();
 					}
 			    }
 			    else{
+			    	typeString = "Acrylic Full-Set";
 			    	try {
 			    		System.out.format("\n%-32s%-10.2f", "Full-Set (Acrylic)", retrievePrice("Acrylic Full-Set"));
+			    		price = retrievePrice("Acrylic Full-Set");
+			    		model.addRow(new Object[]{typeString, "$" + price});
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.getMessage();
@@ -306,13 +342,18 @@ public class POS extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String[] buttons = { "Pink & White", "Gel", "Acrylic" };
+				String typeString;
+				double price;
 
 			    int type = JOptionPane.showOptionDialog(null, "What kind of Fill-In?", "Fill-In",
 			        JOptionPane.DEFAULT_OPTION, 0, null, buttons, buttons[1]);
 
 			    if( type == 0 ){
+			    	typeString = "Pink & White Fill-In";
 			    	try {
 						System.out.format("\n%-32s%-10.2f", "Fill-In (Pink & White)", retrievePrice("Pink & White Fill-In"));
+						price = retrievePrice("Pink & White Fill-In");
+						model.addRow(new Object[]{typeString, "$" + price});
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.getMessage();
@@ -320,15 +361,21 @@ public class POS extends JFrame{
 			    }
 			    else if(type == 1){
 			    	try {
+			    		typeString = "Gel Fill-In";
 			    		System.out.format("\n%-32s%-10.2f", "Fill-In (Gel)", retrievePrice("Gel Fill-In"));
+			    		price = retrievePrice("Gel Fill-In");
+						model.addRow(new Object[]{typeString, "$" + price});
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.getMessage();
 					}
 			    }
 			    else{
+			    	typeString = "Acrylic Fill-In";
 			    	try {
 			    		System.out.format("\n%-32s%-10.2f", "Fill-In (Acrylic)", retrievePrice("Acrylic Fill-In"));
+			    		price = retrievePrice("Acrylic Fill-In");
+						model.addRow(new Object[]{typeString, "$" + price});
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.getMessage();
