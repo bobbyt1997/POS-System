@@ -8,6 +8,9 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -61,6 +64,7 @@ public class POS extends JFrame{
     private DefaultTableModel model = new DefaultTableModel(colNames, 0);
     private JTable table = new JTable(model);
 
+    /*
 	public static void main(String[] args){
 		SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -69,6 +73,7 @@ public class POS extends JFrame{
             }
         });
 	}
+	*/
 
 	public POS(){
 		//Create window using jframe
@@ -80,7 +85,7 @@ public class POS extends JFrame{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
 		CardLayout cl = new CardLayout();
-		
+				
 		//initiate panels
 		jframe = new JPanel(new BorderLayout());
 	    tabs = new JPanel(cl);
@@ -503,4 +508,14 @@ public class POS extends JFrame{
 	    }
 		return 0;
 	}
+	
+	public static String currentTime() {
+		String DATE_FORMAT_NOW = "MM-dd-yyyy";
+	    Calendar cal = Calendar.getInstance();
+	    SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_NOW);
+	    return sdf.format(cal.getTime());
+
+	  }
+	
+	
 }
