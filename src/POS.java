@@ -46,6 +46,9 @@ public class POS extends JFrame{
     JLabel totalLabel;
     double totalPrice = 0.0;
     
+    //Labels to keep track of user and customer
+    JLabel user, customer;
+    
     //Create buttons to switch between cards in cardlayout
     JButton currentTransactionsBtn;
     JButton closedTransactionsBtn;
@@ -140,6 +143,15 @@ public class POS extends JFrame{
         totalLabel = new JLabel();
         totalLabel.setFont(new Font("Arial", Font.PLAIN, 30));
         
+        //Labels that handle USER and CUSTOMER
+        user = new JLabel("User: ");
+        user.setFont(new Font("Arial", Font.BOLD, 22));
+        user.setForeground(Color.WHITE);
+        customer = new JLabel("Customer: ");
+        customer.setFont(new Font("Arial", Font.BOLD, 22));
+        customer.setForeground(Color.CYAN);
+        
+        
         //Add existing buttons to the buttons jpanels
         buttons.add(currentTransactionsBtn);
         buttons.add(closedTransactionsBtn);
@@ -148,6 +160,8 @@ public class POS extends JFrame{
         
         endBtns.add(voidSelection);
         endBtns.add(voidAll);
+        endBtns.add(customer, BorderLayout.PAGE_END);
+        endBtns.add(user, BorderLayout.PAGE_END);
         endBtns.setBackground(Color.DARK_GRAY);
         
         //Add total label to the total panel
