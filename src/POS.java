@@ -2,12 +2,14 @@
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -50,7 +52,7 @@ public class POS extends JFrame{
     double totalPrice = 0.0;
     
     //Labels to keep track of user and customer
-    JLabel user, customer;
+    JLabel user, customer, currentTime;
     
     //Create buttons to switch between cards in cardlayout
     JButton currentTransactionsBtn;
@@ -64,7 +66,6 @@ public class POS extends JFrame{
     private DefaultTableModel model = new DefaultTableModel(colNames, 0);
     private JTable table = new JTable(model);
 
-    
 	public static void main(String[] args){
 		SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -156,6 +157,11 @@ public class POS extends JFrame{
         customer.setFont(new Font("Arial", Font.BOLD, 22));
         customer.setForeground(Color.CYAN);
         
+        currentTime = new JLabel(timestamp());
+        currentTime.setFont(new Font("Arial", Font.BOLD, 22));
+        currentTime.setForeground(Color.WHITE);
+        
+        
         
         //Add existing buttons to the buttons jpanels
         buttons.add(currentTransactionsBtn);
@@ -167,6 +173,7 @@ public class POS extends JFrame{
         endBtns.add(voidAll);
         endBtns.add(customer, BorderLayout.PAGE_END);
         endBtns.add(user, BorderLayout.PAGE_END);
+        endBtns.add(currentTime, BorderLayout.PAGE_END);
         endBtns.setBackground(Color.DARK_GRAY);
         
         //Add total label to the total panel
@@ -509,13 +516,16 @@ public class POS extends JFrame{
 		return 0;
 	}
 	
-	public static String currentTime() {
-		String DATE_FORMAT_NOW = "MM-dd-yyyy";
-	    Calendar cal = Calendar.getInstance();
-	    SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_NOW);
-	    return sdf.format(cal.getTime());
-
-	  }
+	/**
+	 * A method that retrieves current time and date to use as a timestamp
+	 * 
+	 * @return current time and date as a string
+	 */
+	public static String timestamp() {
+		DateFormat df = new SimpleDateFormat("mm/dd/yy h:mm:ss a");
+		Calendar calobj = Calendar.getInstance();
+		return df.format(calobj.getTime());
+	}
 	
 	
 }
