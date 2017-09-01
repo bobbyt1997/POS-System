@@ -2,7 +2,6 @@
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -13,6 +12,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import javax.swing.Timer;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -157,7 +157,16 @@ public class POS extends JFrame{
         customer.setFont(new Font("Arial", Font.BOLD, 22));
         customer.setForeground(Color.CYAN);
         
+        //Create running clock
         currentTime = new JLabel(timestamp());
+        int delay = 1000; //milliseconds
+        ActionListener taskPerformer = new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+            	currentTime.setText(timestamp());
+            }
+        };
+        new Timer(delay, taskPerformer).start();
+        //currentTime = new JLabel(timestamp());
         currentTime.setFont(new Font("Arial", Font.BOLD, 22));
         currentTime.setForeground(Color.WHITE);
         
@@ -522,6 +531,7 @@ public class POS extends JFrame{
 	 * @return current time and date as a string
 	 */
 	public static String timestamp() {
+		
 		DateFormat df = new SimpleDateFormat("mm/dd/yy h:mm:ss a");
 		Calendar calobj = Calendar.getInstance();
 		return df.format(calobj.getTime());
