@@ -64,7 +64,7 @@ public class POS extends JFrame{
     private DefaultTableModel model = new DefaultTableModel(colNames, 0);
     private JTable table = new JTable(model);
 
-    /*
+    
 	public static void main(String[] args){
 		SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -73,7 +73,7 @@ public class POS extends JFrame{
             }
         });
 	}
-	*/
+	
 
 	public POS(){
 		//Create window using jframe
@@ -216,7 +216,7 @@ public class POS extends JFrame{
 			    	typeString = "No Chip Manicure";
 			    	try {
 						price = retrievePrice("No Chip Mani");
-						model.addRow(new Object[]{typeString, "$" + price});
+						model.addRow(new Object[]{typeString, String.format("$%10.2f", price)});
 						totalPrice += price;
 						totalLabel.setText(String.format("Total: $" + "%-10.2f", totalPrice));
 					} catch (SQLException e1) {
@@ -228,7 +228,7 @@ public class POS extends JFrame{
 			    	typeString = "Reg. Manicure ";
 			    	try {
 			    		price = retrievePrice("Manicure");
-			    		model.addRow(new Object[]{typeString, "$" + price});
+			    		model.addRow(new Object[]{typeString, String.format("$%10.2f", price)});
 			    		totalPrice += price;
 			    		totalLabel.setText(String.format("Total: $" + "%-10.2f", totalPrice));
 					} catch (SQLException e1) {
@@ -247,7 +247,7 @@ public class POS extends JFrame{
 				
 				try {
 					price = retrievePrice("Mani/Pedi");
-					model.addRow(new Object[]{typeString, "$" + price});
+					model.addRow(new Object[]{typeString, String.format("$%10.2f", price)});
 					totalPrice += price;
 					totalLabel.setText(String.format("Total: $" + "%-10.2f", totalPrice));
 				} catch (SQLException e1) {
@@ -271,7 +271,7 @@ public class POS extends JFrame{
 			    	typeString = "Toes Polish Change";
 			    	try {
 						price = retrievePrice("Toes Polish Change");
-						model.addRow(new Object[]{typeString, "$" + price});
+						model.addRow(new Object[]{typeString, String.format("$%10.2f", price)});
 						totalPrice += price;
 						totalLabel.setText(String.format("Total: $" + "%-10.2f", totalPrice));
 					} catch (SQLException e1) {
@@ -283,7 +283,7 @@ public class POS extends JFrame{
 			    	typeString = "Nails Polish Change";
 			    	try {
 			    		price = retrievePrice("Nails Polish Change");
-						model.addRow(new Object[]{typeString, "$" + price});
+			    		model.addRow(new Object[]{typeString, String.format("$%10.2f", price)});
 						totalPrice += price;
 						totalLabel.setText(String.format("Total: $" + "%-10.2f", totalPrice));
 					} catch (SQLException e1) {
@@ -308,7 +308,7 @@ public class POS extends JFrame{
 			    	typeString = "No Chip Pedicure";
 			    	try {
 						price = retrievePrice("No Chip Pedi");
-						model.addRow(new Object[]{typeString, "$" + price});
+						model.addRow(new Object[]{typeString, String.format("$%10.2f", price)});
 						totalPrice += price;
 						totalLabel.setText(String.format("Total: $" + "%-10.2f", totalPrice));
 					} catch (SQLException e1) {
@@ -320,7 +320,7 @@ public class POS extends JFrame{
 			    	typeString = "Reg. Pedicure";
 			    	try {
 			    		price = retrievePrice("Pedicure");
-						model.addRow(new Object[]{typeString, "$" + price});
+			    		model.addRow(new Object[]{typeString, String.format("$%10.2f", price)});
 						totalPrice += price;
 						totalLabel.setText(String.format("Total: $" + "%-10.2f", totalPrice));
 					} catch (SQLException e1) {
@@ -339,7 +339,7 @@ public class POS extends JFrame{
 				try {
 					typeString = "Nail Repair";
 					price = retrievePrice("Nail Repair");
-					model.addRow(new Object[]{typeString, "$" + price});
+					model.addRow(new Object[]{typeString, String.format("$%10.2f", price)});
 					totalPrice += price;
 					totalLabel.setText(String.format("Total: $" + "%-10.2f", totalPrice));
 				} catch (SQLException e1) {
@@ -363,7 +363,7 @@ public class POS extends JFrame{
 			    	typeString = "Pink & White Full";
 			    	try {
 						price = retrievePrice("Pink & White Full");
-						model.addRow(new Object[]{typeString, "$" + price});
+						model.addRow(new Object[]{typeString, String.format("$%10.2f", price)});
 						totalPrice += price;
 						totalLabel.setText(String.format("Total: $" + "%-10.2f", totalPrice));
 					} catch (SQLException e1) {
@@ -375,7 +375,7 @@ public class POS extends JFrame{
 			    	typeString = "Gel Full-Set";
 			    	try {
 			    		price = retrievePrice("Gel Full-Set");
-			    		model.addRow(new Object[]{typeString, "$" + price});
+			    		model.addRow(new Object[]{typeString, String.format("$%10.2f", price)});
 			    		totalPrice += price;
 						totalLabel.setText(String.format("Total: $" + "%-10.2f", totalPrice));
 					} catch (SQLException e1) {
@@ -387,7 +387,7 @@ public class POS extends JFrame{
 			    	typeString = "Acrylic Full-Set";
 			    	try {
 			    		price = retrievePrice("Acrylic Full-Set");
-			    		model.addRow(new Object[]{typeString, "$" + price});
+			    		model.addRow(new Object[]{typeString, String.format("$%10.2f", price)});
 			    		totalPrice += price;
 						totalLabel.setText(String.format("Total: $" + "%-10.2f", totalPrice));
 					} catch (SQLException e1) {
@@ -412,7 +412,7 @@ public class POS extends JFrame{
 			    	typeString = "Pink & White Fill-In";
 			    	try {
 						price = retrievePrice("Pink & White Fill-In");
-						model.addRow(new Object[]{typeString, "$" + price});
+						model.addRow(new Object[]{typeString, String.format("$%10.2f", price)});
 						totalPrice += price;
 						totalLabel.setText(String.format("Total: $" + "%-10.2f", totalPrice));
 					} catch (SQLException e1) {
@@ -424,7 +424,7 @@ public class POS extends JFrame{
 			    	try {
 			    		typeString = "Gel Fill-In";
 			    		price = retrievePrice("Gel Fill-In");
-						model.addRow(new Object[]{typeString, "$" + price});
+			    		model.addRow(new Object[]{typeString, String.format("$%10.2f", price)});
 						totalPrice += price;
 						totalLabel.setText(String.format("Total: $" + "%-10.2f", totalPrice));
 					} catch (SQLException e1) {
@@ -436,7 +436,7 @@ public class POS extends JFrame{
 			    	typeString = "Acrylic Fill-In";
 			    	try {
 			    		price = retrievePrice("Acrylic Fill-In");
-						model.addRow(new Object[]{typeString, "$" + price});
+			    		model.addRow(new Object[]{typeString, String.format("$%10.2f", price)});
 						totalPrice += price;
 						totalLabel.setText(String.format("Total: $" + "%-10.2f", totalPrice));
 					} catch (SQLException e1) {
