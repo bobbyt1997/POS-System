@@ -27,4 +27,8 @@ public class User {
 	public String getFirstName(){
 		return firstName;
 	}
+	
+	public void checkCredentials(String lastName, String firstName, String password){
+		
+	}
 }
