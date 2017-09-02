@@ -1,5 +1,9 @@
-# POS-System
-Point of Sale system for nail technicians
+Planned Changes/Additions
 
+--> Create CUSTOMER CLASS to allow creation of their individuals profiles.
+    - Class will allow storing of invoices within a mysql database.
+    - Customer profiles stored in mysql databse.
 
-Simple program utilizing Java Swing components to make a POS system. The sytem will allow nail technician to keep track of their services for each customer. There will be a section for daily reports which will display the overall profit for the day.
+--> Create USER CLASS to keep track of how much money a worker has made in one day.
+    - Mysql used to store daily report of worker.
+    - Class handles username and passwords.
