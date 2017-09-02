@@ -36,4 +36,13 @@ VALUES('Acrylic Fill-In', 20.00);
 
 SELECT * FROM Services;
 
-Drop Table Services;
+CREATE TABLE Customers(
+	custId int(3) not null,
+	lastName varchar(50) not null,
+	firstName varchar(50) not null,
+    PRIMARY KEY (custId)
+);
+
+SELECT * FROM Customers;
+
+Drop Table Customers;
