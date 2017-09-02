@@ -155,7 +155,7 @@ public class POS extends JFrame{
         user.setForeground(Color.WHITE);
         customer = new JLabel("Customer: ");
         customer.setFont(new Font("Arial", Font.BOLD, 22));
-        customer.setForeground(Color.CYAN);
+        customer.setForeground(Color.decode("#ffd700"));
         
         //Create running clock
         currentTime = new JLabel(timestamp());
