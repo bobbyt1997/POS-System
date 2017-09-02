@@ -223,7 +223,7 @@ public class POS extends JFrame{
         manicure.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String[] buttons = { "Regular", "No Chip" };
+				String[] buttons = { "Cancel", "Regular", "No Chip" };
 				
 				double price;
 				String typeString;
@@ -231,7 +231,7 @@ public class POS extends JFrame{
 			    int type = JOptionPane.showOptionDialog(null, "Regular or No Chip Manicure?", "Manicure",
 			        JOptionPane.DEFAULT_OPTION, 0, null, buttons, buttons[0]);
 
-			    if( type == 1 ){
+			    if( type == 2 ){
 			    	typeString = "No Chip Manicure";
 			    	try {
 						price = retrievePrice("No Chip Mani");
@@ -243,7 +243,7 @@ public class POS extends JFrame{
 						e1.getMessage();
 					}
 			    }
-			    else{
+			    else if(type == 1){
 			    	typeString = "Reg. Manicure ";
 			    	try {
 			    		price = retrievePrice("Manicure");
@@ -255,6 +255,8 @@ public class POS extends JFrame{
 						e1.getMessage();
 					}
 			    }
+			    else
+			    	dispose();
 			}
         });
         	
@@ -279,14 +281,14 @@ public class POS extends JFrame{
         polishCh.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String[] buttons = { "Nails", "Toes" };
+				String[] buttons = { "Cancel", "Nails", "Toes" };
 				double price;
 				String typeString;
 
 			    int type = JOptionPane.showOptionDialog(null, "", "Polish Change",
 			        JOptionPane.DEFAULT_OPTION, 0, null, buttons, buttons[0]);
 
-			    if( type == 1 ){
+			    if( type == 2 ){
 			    	typeString = "Toes Polish Change";
 			    	try {
 						price = retrievePrice("Toes Polish Change");
@@ -298,7 +300,7 @@ public class POS extends JFrame{
 						e1.getMessage();
 					}
 			    }
-			    else{
+			    else if(type == 1){
 			    	typeString = "Nails Polish Change";
 			    	try {
 			    		price = retrievePrice("Nails Polish Change");
@@ -310,20 +312,22 @@ public class POS extends JFrame{
 						e1.getMessage();
 					}
 			    }
+			    else
+			    	dispose();
 			}
         });
         
         pedicure.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String[] buttons = { "Regular", "No Chip" };
+				String[] buttons = { "Cancel", "Regular", "No Chip" };
 				String typeString;
 				double price;
 
 			    int type = JOptionPane.showOptionDialog(null, "Regular or No Chip Pedicure?", "Pedicure",
 			        JOptionPane.DEFAULT_OPTION, 0, null, buttons, buttons[0]);
 
-			    if( type == 1 ){
+			    if( type == 2 ){
 			    	typeString = "No Chip Pedicure";
 			    	try {
 						price = retrievePrice("No Chip Pedi");
@@ -335,7 +339,7 @@ public class POS extends JFrame{
 						e1.getMessage();
 					}
 			    }
-			    else{
+			    else if(type == 1){
 			    	typeString = "Reg. Pedicure";
 			    	try {
 			    		price = retrievePrice("Pedicure");
@@ -347,6 +351,8 @@ public class POS extends JFrame{
 						e1.getMessage();
 					}
 			    }
+			    else
+			    	dispose();
 			}
         });
         
@@ -371,14 +377,14 @@ public class POS extends JFrame{
         fullSet.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String[] buttons = { "Pink & White", "Gel", "Acrylic" };
+				String[] buttons = { "Cancel", "Pink & White", "Gel", "Acrylic" };
 				String typeString;
 				double price;
 
 			    int type = JOptionPane.showOptionDialog(null, "What kind of Full-Set?", "Full-Set",
-			        JOptionPane.DEFAULT_OPTION, 0, null, buttons, buttons[1]);
+			        JOptionPane.DEFAULT_OPTION, 0, null, buttons, buttons[0]);
 
-			    if( type == 0 ){
+			    if( type == 1 ){
 			    	typeString = "Pink & White Full";
 			    	try {
 						price = retrievePrice("Pink & White Full");
@@ -390,7 +396,7 @@ public class POS extends JFrame{
 						e1.getMessage();
 					}
 			    }
-			    else if(type == 1){
+			    else if(type == 2){
 			    	typeString = "Gel Full-Set";
 			    	try {
 			    		price = retrievePrice("Gel Full-Set");
@@ -402,7 +408,7 @@ public class POS extends JFrame{
 						e1.getMessage();
 					}
 			    }
-			    else{
+			    else if(type == 3){
 			    	typeString = "Acrylic Full-Set";
 			    	try {
 			    		price = retrievePrice("Acrylic Full-Set");
@@ -414,20 +420,22 @@ public class POS extends JFrame{
 						e1.getMessage();
 					}
 			    }
+			    else
+			    	dispose();
 			}
         });
         
         fillIn.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String[] buttons = { "Pink & White", "Gel", "Acrylic" };
+				String[] buttons = { "Cancel", "Pink & White", "Gel", "Acrylic" };
 				String typeString;
 				double price;
 
 			    int type = JOptionPane.showOptionDialog(null, "What kind of Fill-In?", "Fill-In",
-			        JOptionPane.DEFAULT_OPTION, 0, null, buttons, buttons[1]);
+			        JOptionPane.DEFAULT_OPTION, 0, null, buttons, buttons[0]);
 
-			    if( type == 0 ){
+			    if( type == 1 ){
 			    	typeString = "Pink & White Fill-In";
 			    	try {
 						price = retrievePrice("Pink & White Fill-In");
@@ -439,7 +447,7 @@ public class POS extends JFrame{
 						e1.getMessage();
 					}
 			    }
-			    else if(type == 1){
+			    else if(type == 2){
 			    	try {
 			    		typeString = "Gel Fill-In";
 			    		price = retrievePrice("Gel Fill-In");
@@ -451,7 +459,7 @@ public class POS extends JFrame{
 						e1.getMessage();
 					}
 			    }
-			    else{
+			    else if(type == 3){
 			    	typeString = "Acrylic Fill-In";
 			    	try {
 			    		price = retrievePrice("Acrylic Fill-In");
@@ -463,6 +471,8 @@ public class POS extends JFrame{
 						e1.getMessage();
 					}
 			    }
+			    else
+			    	dispose();
 			}
         });
         
