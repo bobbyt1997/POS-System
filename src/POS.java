@@ -12,7 +12,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import javax.swing.Timer;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -22,6 +21,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.Timer;
 
 public class POS extends JFrame{
 	
@@ -178,11 +178,14 @@ public class POS extends JFrame{
         buttons.add(dailyReportsBtn);
         buttons.setBackground(Color.DARK_GRAY);
         
+        //Panel that contains all ending or final buttons
+        GridLayout doubleCol = new GridLayout(3, 2);
+        endBtns.setLayout(doubleCol);
         endBtns.add(voidSelection);
         endBtns.add(voidAll);
-        endBtns.add(customer, BorderLayout.PAGE_END);
-        endBtns.add(user, BorderLayout.PAGE_END);
-        endBtns.add(currentTime, BorderLayout.PAGE_END);
+        endBtns.add(customer/*, BorderLayout.PAGE_END*/);
+        endBtns.add(user/*, BorderLayout.PAGE_END*/);
+        endBtns.add(currentTime/*, BorderLayout.PAGE_END*/);
         endBtns.setBackground(Color.DARK_GRAY);
         
         //Add total label to the total panel
@@ -532,7 +535,7 @@ public class POS extends JFrame{
 	 */
 	public static String timestamp() {
 		
-		DateFormat df = new SimpleDateFormat("mm/dd/yy h:mm:ss a");
+		DateFormat df = new SimpleDateFormat("MM/dd/yy ----- h:mm:ss a");
 		Calendar calobj = Calendar.getInstance();
 		return df.format(calobj.getTime());
 	}
