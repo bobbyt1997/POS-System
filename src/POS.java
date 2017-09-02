@@ -19,7 +19,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.Timer;
 
@@ -66,6 +65,7 @@ public class POS extends JFrame{
     private DefaultTableModel model = new DefaultTableModel(colNames, 0);
     private JTable table = new JTable(model);
 
+    /*
 	public static void main(String[] args){
 		SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -73,7 +73,7 @@ public class POS extends JFrame{
                 new POS();
             }
         });
-	}
+	}*/
 	
 
 	public POS(){
