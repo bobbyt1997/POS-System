@@ -545,7 +545,7 @@ public class POS extends JFrame{
 	 */
 	public static String timestamp() {
 		
-		DateFormat df = new SimpleDateFormat("MM/dd/yy ----- h:mm:ss a");
+		DateFormat df = new SimpleDateFormat("MM/dd/yy -- h:mm:ss a");
 		Calendar calobj = Calendar.getInstance();
 		return df.format(calobj.getTime());
 	}
