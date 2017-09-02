@@ -28,7 +28,7 @@ public class User {
 		return firstName;
 	}
 	
-	public void checkCredentials(String lastName, String firstName, String password){
-		
+	public Boolean checkCredentials(String lastName, String firstName, String password){
+		return false;
 	}
 }
