@@ -43,6 +43,14 @@ CREATE TABLE Customers(
     PRIMARY KEY (custId)
 );
 
+CREATE TABLE Users(
+	userId int(3) not null,
+	lastName varchar(50) not null,
+	firstName varchar(50) not null,
+    password varchar(50) not null,
+    PRIMARY KEY (userId)
+);
+
 SELECT * FROM Customers;
 
 Drop Table Customers;
