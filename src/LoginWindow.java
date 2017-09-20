@@ -21,6 +21,10 @@ public class LoginWindow extends JFrame{
                 new LoginWindow();
             }
         });
+		
+		//Create a username and password textbox with a login button at the bottom
+		
+		//If user name and password matches one from a table in mysql, display a list of customer to choose from.
 	}
 
 }
