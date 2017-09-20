@@ -12,6 +12,12 @@ public class LoginWindow extends JFrame{
 		frame.setSize(1000, 800);
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		//set layout for main frame
+		
+		//Create a username and password textbox with a login button at the bottom
+				
+		//If user name and password matches one from a table in mysql, display a list of customer to choose from.
 	}
 	
 	public static void main(String[] args){
@@ -22,9 +28,6 @@ public class LoginWindow extends JFrame{
             }
         });
 		
-		//Create a username and password textbox with a login button at the bottom
-		
-		//If user name and password matches one from a table in mysql, display a list of customer to choose from.
 	}
 
 }
