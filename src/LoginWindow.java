@@ -1,7 +1,3 @@
-
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
@@ -11,7 +7,10 @@ import javax.swing.*;
 public class LoginWindow extends JFrame{
 
 	private static final long serialVersionUID = 1L;
-
+	
+	/**
+	 * Creates a login window
+	 */
 	public LoginWindow(){
 		JFrame frame = new JFrame("Nail Tech POS System");
 		
