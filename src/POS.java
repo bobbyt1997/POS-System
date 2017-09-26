@@ -44,6 +44,7 @@ public class POS extends JFrame{
     JPanel curTransTab;
     JPanel cloTransTab;
     JPanel dailyTab;
+    JPanel settingsTab;
     JPanel endBtns;
     JPanel total;
     
@@ -58,6 +59,7 @@ public class POS extends JFrame{
     JButton currentTransactionsBtn;
     JButton closedTransactionsBtn;
     JButton dailyReportsBtn;
+    JButton settingsBtn;
     JButton fullSet, fillIn, manicure, pedicure, manPed, nailRepair, 
     polishCh, voidSelection, voidAll;
     
@@ -95,6 +97,7 @@ public class POS extends JFrame{
 	    curTransTab = new JPanel();
 	    cloTransTab = new JPanel();
 	    dailyTab = new JPanel();
+	    settingsTab = new JPanel();
 	    endBtns = new JPanel();
 	    total = new JPanel();
         
@@ -102,6 +105,7 @@ public class POS extends JFrame{
         currentTransactionsBtn = new JButton("Current Transaction");
         closedTransactionsBtn = new JButton("Closed Transactions");
         dailyReportsBtn = new JButton("Daily Reports");
+        settingsBtn = new JButton("Settings");
         
         //Create buttons for actual services
         fullSet = new JButton("Full Set");
@@ -126,6 +130,7 @@ public class POS extends JFrame{
         currentTransactionsBtn.setPreferredSize(new Dimension(150, 80));
         closedTransactionsBtn.setPreferredSize(new Dimension(150, 80));
         dailyReportsBtn.setPreferredSize(new Dimension(150, 80));
+        settingsBtn.setPreferredSize(new Dimension(150, 80));
         
         //Add service buttons to current transaction tab
         curTransTab.setLayout(new GridLayout(0,2));
@@ -145,6 +150,7 @@ public class POS extends JFrame{
         tabs.add(curTransTab, "Current Transactions");
         tabs.add(cloTransTab, "Closed Transactions");
         tabs.add(dailyTab, "Daily Reports");
+        tabs.add(settingsTab, "Settings");
         
         //Initialize labels that are responsible for the display of the total
         totalLabel = new JLabel();
@@ -177,6 +183,7 @@ public class POS extends JFrame{
         buttons.add(currentTransactionsBtn);
         buttons.add(closedTransactionsBtn);
         buttons.add(dailyReportsBtn);
+        buttons.add(settingsBtn);
         buttons.setBackground(Color.DARK_GRAY);
         
         //Panel that contains all ending or final buttons
@@ -215,6 +222,14 @@ public class POS extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				cl.show(tabs, "Daily Reports");
+				
+			}
+        });
+        
+        settingsBtn.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cl.show(tabs, "Settings");
 				
 			}
         });
