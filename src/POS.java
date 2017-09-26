@@ -153,7 +153,7 @@ public class POS extends JFrame{
         //Labels that handle USER and CUSTOMER
         user = new JLabel("User: " + username);
         user.setFont(new Font("Arial", Font.BOLD, 22));
-        user.setForeground(Color.WHITE);
+        user.setForeground(Color.decode("#a1dd1e"));
         customer = new JLabel("Customer: ");
         customer.setFont(new Font("Arial", Font.BOLD, 22));
         customer.setForeground(Color.decode("#ffd700"));
