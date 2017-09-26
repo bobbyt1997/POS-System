@@ -1,3 +1,4 @@
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
@@ -18,6 +19,7 @@ public class LoginWindow extends JFrame{
 		JButton loginBtn = new JButton("Log In");
 		JTextField usernameField = new JTextField(25);
 		JPasswordField passwordField = new JPasswordField(25);
+		JLabel programName = new JLabel("NailTecH");
 		JLabel usernameLbl = new JLabel("Username: ");
 		JLabel passwordLbl = new JLabel("Password: ");
 		
@@ -28,18 +30,23 @@ public class LoginWindow extends JFrame{
 		frame.setLayout(null);
 		
 		//Create a username and password textbox with a login button at the bottom
+		frame.add(programName);
 		frame.add(usernameLbl);
 		frame.add(usernameField);
 		frame.add(passwordLbl);
 		frame.add(passwordField);
 		frame.add(loginBtn);
 		
+		//program name/logo
+		programName.setFont(new Font("Arial", Font.ITALIC, 40));
+		
 		//position and size each element
-		usernameLbl.setBounds(140, 70, 80, 30);
-		usernameField.setBounds(210, 70, 150, 30);
-		passwordLbl.setBounds(140, 110, 80, 30);
-		passwordField.setBounds(210, 110, 150, 30);
-		loginBtn.setBounds(210, 150, 100, 30);
+		programName.setBounds(170, 50, 200, 30);
+		usernameLbl.setBounds(140, 120, 80, 30);
+		usernameField.setBounds(210, 120, 150, 30);
+		passwordLbl.setBounds(140, 160, 80, 30);
+		passwordField.setBounds(210, 160, 150, 30);
+		loginBtn.setBounds(210, 200, 100, 30);
 		
 		//create a listener that does something when the button is clicked
 		loginBtn.addActionListener(new ActionListener(){
