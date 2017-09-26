@@ -46,7 +46,7 @@ public class LoginWindow extends JFrame{
 		usernameField.setBounds(210, 120, 150, 30);
 		passwordLbl.setBounds(140, 160, 80, 30);
 		passwordField.setBounds(210, 160, 150, 30);
-		loginBtn.setBounds(210, 200, 100, 30);
+		loginBtn.setBounds(200, 200, 100, 30);
 		
 		//create a listener that does something when the button is clicked
 		loginBtn.addActionListener(new ActionListener(){
