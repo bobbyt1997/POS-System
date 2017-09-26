@@ -77,7 +77,7 @@ public class POS extends JFrame{
 	}*/
 	
 
-	public POS(){
+	public POS(String username){
 		//Create window using jframe
 		JFrame frame = new JFrame("Nail Tech POS System");
 	
@@ -151,7 +151,7 @@ public class POS extends JFrame{
         totalLabel.setFont(new Font("Arial", Font.PLAIN, 30));
         
         //Labels that handle USER and CUSTOMER
-        user = new JLabel("User: ");
+        user = new JLabel("User: " + username);
         user.setFont(new Font("Arial", Font.BOLD, 22));
         user.setForeground(Color.WHITE);
         customer = new JLabel("Customer: ");

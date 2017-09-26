@@ -51,7 +51,7 @@ public class LoginWindow extends JFrame{
 			            @Override
 			            public void run() {
 			            	//Start a new instance of POS and dispose of the login window
-			                new POS();
+			                new POS(usernameField.getText());
 			                dispose();
 			            }
 			        });
